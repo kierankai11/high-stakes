@@ -11,6 +11,7 @@ void clamp_tilt_task_fn(void *params) {
   while (true) {
     if (clamp_up) {
         error = CLAMP_TILT_DEGREES - clamp.get_position();
+		    master.print(0, 0, "%f", error);
       } else {
         if (forceClampRelease) {
           error = CLAMP_FORCE_DEGREES - clamp.get_position();
@@ -65,19 +66,20 @@ void autonomous() {
   Motor intakeC(INTAKE_C);
   Motor clamp(CLAMP_P);
 
-  frontRight.move_velocity(200);
-  frontLeft.move_velocity(200);
-  backRight.move_velocity(200);
-  backLeft.move_velocity(200);
+  frontRight.move_velocity(-200);
+  frontLeft.move_velocity(-200);
+  backRight.move_velocity(-200);
+  backLeft.move_velocity(-200);
 
-  intakeF.move_velocity(200);
-
-  delay(700);
+  delay(900);
 
   frontRight.move_velocity(0);
   frontLeft.move_velocity(0);
   backRight.move_velocity(0);
   backLeft.move_velocity(0);
+  
+  //
+  clamp_up = true;
   
   intakeF.move_velocity(0);
   // for next time
