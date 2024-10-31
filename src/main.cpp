@@ -1,5 +1,4 @@
 #include "main.h"
-#include "pros/rtos.h"
 
 bool clamp_up = false;
 bool forceClampRelease = false;
