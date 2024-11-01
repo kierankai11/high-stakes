@@ -7,12 +7,13 @@ void baseTurn(double bearing, double p_KP);
 void baseTurn(double bearing);
 
 #define INPERDEG 0.0359791667
-#define DIS 6.5 
+#define DIS 6.5
 #define TORAD 0.01745329251
 
 #define DEFAULTKP 0.35
-#define TURNKP    0.7
+#define TURNKP 0.69
 #define LEEWAY 20
 
-#endif
+#define DEFAULTCAP 100
 
+#endif

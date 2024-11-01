@@ -73,57 +73,21 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-  // Motor frontRight(DRIVE_FR_P);
-  // Motor frontLeft(DRIVE_FL_P);
-  // Motor backRight(DRIVE_BR_P);
-  // Motor backLeft(DRIVE_BL_P);
+  Motor intakeF(INTAKE_F);
+  Motor intakeC(INTAKE_C);
 
-  // Motor intakeF(INTAKE_F);
-  // Motor intakeC(INTAKE_C);
-
-  // // Move backwards towards clamp
-  // // moveRPM(-200, -200);
-  // backRight.move_velocity(-150);
-  // backLeft.move_velocity(-150);
-
-  // frontRight.move_velocity(-150);
-  // frontLeft.move_velocity(-150);
-  // delay(1200);
-  // moveRPM(0, 0);
-  // delay(200);
-
-  // // Activate clamp to get stake
-  // clamp_up = true;
-  // delay(1000); // Wait for clamp
-
-  // // Turn 90 degrees to face a donut (lots of tuning required)
-  // moveRPM(150, -150); // for red negative corner, blue positive corner
-  // delay(300);
-  // moveRPM(0, 0);
-  // delay(200);
-
-  // // Move forward and start intake
-  // moveRPM(200, 200);
-  // intakeF.move_velocity(600);
-  // delay(700);
-  // moveRPM(0, 0);
-  // delay(300);
-
-  // // Score two donuts
-  // intakeC.move_velocity(300);
-  // for (int i = 0; i < 6; i++) { // Checks if conveyer is stuck 6 times at intervals of 1s. Total of 6 seconds of conveyer moving.
-  //   if (intakeC.get_actual_velocity() <= 50) {
-  //     intakeC.move_velocity(0);
-  //     break;
-  //   } else {
-  //     delay(1000);
-  //   }
-  // }
-
-  // // Stop
-  // intakeC.move_velocity(0);
-  // intakeF.move_velocity(0);
-  baseTurn(90);
+  baseMove(-30, -30);
+  clamp_up = true;
+  delay(1000);
+  baseTurn(
+      100); // Positive bearing = red-, blue+, Negative bearing = red+, blue-
+  intakeC.move(127);
+  delay(100);
+  intakeF.move(127);
+  baseMove(28, 28);
+  intakeC.move(127);
+  delay(4000);
+  intakeC.move(0);
 }
 
 void opcontrol() {
@@ -134,7 +98,6 @@ void opcontrol() {
 
   Motor intakeF(INTAKE_F);
   Motor intakeC(INTAKE_C);
-  Motor clamp(CLAMP_P);
   Controller master(CONTROLLER_MASTER);
 
   int intake_voltage = 0;
