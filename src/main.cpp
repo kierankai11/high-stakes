@@ -1,4 +1,5 @@
 #include "main.h"
+#include "mechLib.hpp"
 
 bool clamp_up = false;
 bool forceClampRelease = false;
@@ -9,10 +10,11 @@ void moveRPM(int left, int right) {
   Motor backRight(DRIVE_BR_P);
   Motor backLeft(DRIVE_BL_P);
 
-  frontRight.move_velocity(right);
-  frontLeft.move_velocity(left);
   backRight.move_velocity(right);
   backLeft.move_velocity(left);
+
+  frontRight.move_velocity(right);
+  frontLeft.move_velocity(left);
 }
 
 void clamp_tilt_task_fn(void *params) {
@@ -40,12 +42,14 @@ void clamp_tilt_task_fn(void *params) {
 
 void initialize() {
   // Drive
-  DEFINE_DRIVE(frontRight, DRIVE_FR_P);
-  DEFINE_DRIVE(frontLeft, DRIVE_FL_P);
-  DEFINE_DRIVE(backLeft, DRIVE_BL_P);
-  backLeft.set_brake_mode(E_MOTOR_BRAKE_HOLD);
-  DEFINE_DRIVE(backright, DRIVE_BR_P);
-  backright.set_brake_mode(E_MOTOR_BRAKE_HOLD);
+  DEFINE_MOTOR(frontRight, DRIVE_FR_P, v5::MotorGears::green);
+  frontRight.set_brake_mode(E_MOTOR_BRAKE_BRAKE);
+  DEFINE_MOTOR(frontLeft, DRIVE_FL_P, v5::MotorGears::green);
+  frontLeft.set_brake_mode(E_MOTOR_BRAKE_BRAKE);
+  DEFINE_MOTOR(backLeft, DRIVE_BL_P, v5::MotorGears::green);
+  backLeft.set_brake_mode(E_MOTOR_BRAKE_BRAKE);
+  DEFINE_MOTOR(backright, DRIVE_BR_P, v5::MotorGears::green);
+  backright.set_brake_mode(E_MOTOR_BRAKE_BRAKE);
 
   // Intakes
   DEFINE_MOTOR(intakeF, INTAKE_F, v5::MotorGears::blue);
@@ -69,43 +73,57 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-  Motor intakeF(INTAKE_F);
-  Motor intakeC(INTAKE_C);
+  // Motor frontRight(DRIVE_FR_P);
+  // Motor frontLeft(DRIVE_FL_P);
+  // Motor backRight(DRIVE_BR_P);
+  // Motor backLeft(DRIVE_BL_P);
 
-  // Move backwards towards clamp
-  moveRPM(-200, -200);
-  delay(900);
-  moveRPM(0, 0);
+  // Motor intakeF(INTAKE_F);
+  // Motor intakeC(INTAKE_C);
 
-  // Activate clamp to get stake
-  clamp_up = true;
-  delay(1000);
+  // // Move backwards towards clamp
+  // // moveRPM(-200, -200);
+  // backRight.move_velocity(-150);
+  // backLeft.move_velocity(-150);
 
-  // Turn 90 degrees to face a donut (lots of tuning required)
-  moveRPM(150, -150); // for red negative corner, blue positive corner
-  delay(300);
-  moveRPM(0, 0);
+  // frontRight.move_velocity(-150);
+  // frontLeft.move_velocity(-150);
+  // delay(1200);
+  // moveRPM(0, 0);
+  // delay(200);
 
-  // Move forward and start intake
-  moveRPM(200, 200);
-  intakeF.move_velocity(600);
-  delay(700);
+  // // Activate clamp to get stake
+  // clamp_up = true;
+  // delay(1000); // Wait for clamp
 
-  // Score two donuts
-  moveRPM(0, 0);
-  intakeC.move_velocity(300);
-  for (int i = 0; i < 6; i++) { // Checks if conveyer is stuck 6 times at intervals of 1s. Total of 6 seconds of conveyer moving.
-    if (intakeC.get_actual_velocity() <= 50) {
-      intakeC.move_velocity(0);
-      break;
-    } else {
-      delay(1000);
-    }
-  }
+  // // Turn 90 degrees to face a donut (lots of tuning required)
+  // moveRPM(150, -150); // for red negative corner, blue positive corner
+  // delay(300);
+  // moveRPM(0, 0);
+  // delay(200);
 
-  // Stop
-  intakeC.move_velocity(0);
-  intakeF.move_velocity(0);
+  // // Move forward and start intake
+  // moveRPM(200, 200);
+  // intakeF.move_velocity(600);
+  // delay(700);
+  // moveRPM(0, 0);
+  // delay(300);
+
+  // // Score two donuts
+  // intakeC.move_velocity(300);
+  // for (int i = 0; i < 6; i++) { // Checks if conveyer is stuck 6 times at intervals of 1s. Total of 6 seconds of conveyer moving.
+  //   if (intakeC.get_actual_velocity() <= 50) {
+  //     intakeC.move_velocity(0);
+  //     break;
+  //   } else {
+  //     delay(1000);
+  //   }
+  // }
+
+  // // Stop
+  // intakeC.move_velocity(0);
+  // intakeF.move_velocity(0);
+  baseTurn(90);
 }
 
 void opcontrol() {

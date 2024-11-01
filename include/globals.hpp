@@ -10,8 +10,8 @@
 
 // CLAMP
 #define CLAMP_P                17
-#define CLAMP_TILT_DEGREES     240          // 220 used to work
-#define CLAMP_DEFAULT_DEGREES  -70          // works
+#define CLAMP_TILT_DEGREES     255          // 220 used to work
+#define CLAMP_DEFAULT_DEGREES  -30          // works
 #define CLAMP_FORCE_DEGREES    -200
 #define CLAMP_TILT_KP          2            // important for accuracy
 
