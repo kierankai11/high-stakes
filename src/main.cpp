@@ -1,5 +1,6 @@
 #include "main.h"
 #include "mechLib.hpp"
+#include "pros/rtos.h"
 
 bool clamp_up = false;
 bool forceClampRelease = false;
@@ -77,17 +78,36 @@ void autonomous() {
   Motor intakeC(INTAKE_C);
 
   baseMove(-30, -30);
+  delay(100);
   clamp_up = true;
   delay(1000);
+  intakeF.move(127);
+  intakeC.move(127);
   baseTurn(
       100); // Positive bearing = red-, blue+, Negative bearing = red+, blue-
-  intakeC.move(127);
   delay(100);
-  intakeF.move(127);
   baseMove(28, 28);
-  intakeC.move(127);
-  delay(4000);
+  delay(1000);
+  intakeF.move(0);
   intakeC.move(0);
+  baseTurn(
+      93);
+  // delay(400);
+  // intakeF.move(127);
+  // intakeC.move(127);
+  // delay(100);
+  // baseMove(23, 23);
+  // delay(1000);
+  // intakeF.move(0);
+  // intakeC.move(0);
+  baseMove(15, 15);
+  delay(200);
+  // baseMove(-13, -13);
+  // delay(200);
+  baseTurn(
+      95);
+  delay(100);
+  baseMove(45, 45);
 }
 
 void opcontrol() {

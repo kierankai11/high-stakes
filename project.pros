@@ -397,7 +397,7 @@
       }
     },
     "upload_options": {
-      "icon": "X",
+      "icon": "pizza",
       "description": "sigma"
     },
     "use_early_access": true
