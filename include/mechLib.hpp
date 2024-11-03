@@ -3,6 +3,7 @@
 
 void baseMove(double L, double R, double p_KP);
 void baseMove(double L, double R);
+void baseMove(double X);
 void baseTurn(double bearing, double p_KP);
 void baseTurn(double bearing);
 

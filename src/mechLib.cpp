@@ -49,6 +49,8 @@ void baseMove(double L, double R, double p_KP) {
 
 void baseMove(double L, double R) { baseMove(L, R, DEFAULTKP); }
 
+void baseMove(double X) { baseMove(X, X); }
+
 double turnL, turnR;
 
 void baseTurn(double bearing, double p_KP) {

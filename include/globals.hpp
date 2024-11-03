@@ -1,3 +1,6 @@
+#ifndef _GLOBALS_HPP_
+#define _GLOBALS_HPP_
+
 #define DRIVE_BL_P 15
 #define DRIVE_BR_P -16
 
@@ -15,8 +18,13 @@
 #define CLAMP_FORCE_DEGREES -200
 #define CLAMP_TILT_KP 2 // important for accuracy
 
+// AUTONOMOUS
+#define MOVEDELAY 200
+
 #define DEFINE_DRIVE(name, port)                                               \
   pros::Motor name(port, pros::v5::MotorGears::red,                            \
                    pros::v5::MotorEncoderUnits::degrees)
 #define DEFINE_MOTOR(name, port, gear)                                         \
   pros::Motor name(port, gear, pros::v5::MotorEncoderUnits::degrees)
+
+#endif
