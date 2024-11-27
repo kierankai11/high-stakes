@@ -163,57 +163,7 @@ void autonomous() {
     baseTurn(LADDER);
     moveDelay();
     baseMove(50);
-    // delay(200); // Try to fix angle problem
-    // baseMove(-30);
-    // delay(100);
-    // clamp_up = true;
-    // delay(1000);
-    // intakeF.move(127);
-    // intakeC.move(127);
-    // baseTurn(
-    //     100); // Positive bearing = red-, blue+, Negative bearing = red+, blue-
-    // delay(100);
-    // baseMove(28);
-    // delay(1000);
-    // intakeF.move(0);
-    // intakeC.move(0);
-    // baseTurn(
-    //     93);
-    // // delay(400);
-    // // intakeF.move(127);
-    // // intakeC.move(127);
-    // // delay(100);
-    // // baseMove(23, 23);
-    // // delay(1000);
-    // // intakeF.move(0);
-    // // intakeC.move(0);
-    // baseMove(15, 15);
-    // delay(200);
-    // // baseMove(-13, -13);
-    // // delay(200);
-    // baseTurn(
-    //     95);
-    // delay(100);
-    // baseMove(45, 45);
   }
-
-  // SIGMA
-  
-  // baseTurn(45);
-  // baseMove(30);
-  // moveDelay();
-  // baseMove(18.8);
-  // delay(700);             // Wait for intake to get 1 of two stacks
-  // baseMove(-12.9);
-  // moveDelay();
-  // baseTurn(33.2);
-  // moveDelay();
-  // baseMove(16.9);
-  // delay(700);             // Wait for intake to get 2 of two stacks
-  // baseMove(-10);
-  // intakeF.move(0);
-  // delay(1000);
-  // intakeC.move(0);
 }
 
 void opcontrol() {
